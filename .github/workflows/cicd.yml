@@ -16,11 +16,11 @@ jobs:
         password: ${{ secrets.REGISTRY_PASSWORD }}
 
     - run: |
-        docker build . -t myacr31.azurecr.io/aci-tutorial-app:${{ github.sha }}
-        docker push myacr31.azurecr.io/aci-tutorial-app:${{ github.sha }}     
+        docker build . -t myacr31.azurecr.io/aci-tutorial-app:v2
+        docker push myacr31.azurecr.io/aci-tutorial-app:v2     
 
     - uses: azure/webapps-deploy@v2
       with:
         app-name: 'myapp'
         publish-profile: ${{ secrets.AZURE_WEBAPP_PUBLISH_PROFILE }}
-        images: 'myacr31.azurecr.io/aci-tutorial-app:${{ github.sha }}'
+        images: 'myacr31.azurecr.io/aci-tutorial-app:v2'
